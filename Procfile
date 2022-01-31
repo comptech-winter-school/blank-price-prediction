@@ -1,1 +1,1 @@
-web: gunicorn TrueMetall.wsgi
+web: gunicorn gettingstarted.wsgi
