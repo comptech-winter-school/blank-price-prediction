@@ -3,6 +3,11 @@ body {
     font-size: 48px;
 }
 
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
 .my_container {
     width: 100%;
     height: 100%;
@@ -12,6 +17,8 @@ body {
     margin: 0 auto;
     padding-top: 5%;
     padding-bottom: 5%;
+    display: flex;
+    flex-direction: column;
 }
 
 .load {
@@ -23,6 +30,10 @@ body {
     border-radius: 60px;
     font-family: 'Roboto', sans-serif;
     font-size: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 .predict {
@@ -37,5 +48,6 @@ body {
     font-size: 48px;
 }
 
-
-
+input[type='file'] {
+    display: none;
+}
