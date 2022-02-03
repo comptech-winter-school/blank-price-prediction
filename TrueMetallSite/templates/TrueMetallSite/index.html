@@ -8,15 +8,15 @@
             {% csrf_token %}
             <div class="my_container">
                 <div class="load_container">
-                    <label for="invisible-input" class="label">
+                    <label for="upload-button" class="label">
                         <div class="load">
                             Загрузить файлы
-                            <input id="invisible-input" type="file" name="document"></input>
+                            <input id="upload-button" type="file" name="document" accept=".xsl,.xlsx,.csv"></input>
                         </div>
                     </label>
                 </div>
                 <div class="predict_container">
-                    <button class="predict">Сделать прогноз</button>
+                    <button id="predict-button" name="predict" type="submit" class="predict">Сделать прогноз</button>
                 </div>
             </div>
         </form>
