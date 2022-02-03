@@ -1,0 +1,13 @@
+{% extends 'TrueMetallSite/base.html' %}
+
+{% block title %}Прогноз{% endblock %}
+
+{% block content %}
+    <div class="page-wrapper">
+        <div class="my_container">
+            {% for  el in predicts%}
+                <h3>{{ el.datetime }}</h3>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

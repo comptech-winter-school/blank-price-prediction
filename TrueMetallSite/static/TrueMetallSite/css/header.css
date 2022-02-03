@@ -5887,19 +5887,22 @@ input {
 
 @font-face {
     font-family: GT Eesti Pro Text;
-    src: url(/local/templates/z-template/static/fonts/GT-Eesti-Pro-Text-Book.woff2) format("woff2"), url(/local/templates/z-template/static/fonts/GT-Eesti-Pro-Text-Book.woff) format("woff");
+    src: url(../fonts/GT-Eesti-Pro-Text-Book.woff2) format("woff2"),
+    url(../fonts/GT-Eesti-Pro-Text-Book.woff) format("woff");
     font-weight: 400
 }
 
 @font-face {
     font-family: GT Eesti Pro Text;
-    src: url(/local/templates/z-template/static/fonts/GT-Eesti-Pro-Text-Medium.woff2) format("woff2"), url(/local/templates/z-template/static/fonts/GT-Eesti-Pro-Text-Medium.woff) format("woff");
+    src: url(../fonts/GT-Eesti-Pro-Text-Medium.woff2) format("woff2"),
+    url(../fonts/GT-Eesti-Pro-Text-Medium.woff) format("woff");
     font-weight: 500
 }
 
 @font-face {
     font-family: GT Eesti Pro Text;
-    src: url(/local/templates/z-template/static/fonts/GT-Eesti-Pro-Text-Thin.woff2) format("woff2"), url(/local/templates/z-template/static/fonts/GT-Eesti-Pro-Text-Thin.woff) format("woff");
+    src: url(../fonts/GT-Eesti-Pro-Text-Thin.woff2) format("woff2"),
+    url(../fonts/GT-Eesti-Pro-Text-Thin.woff) format("woff");
     font-weight: 300
 }
 
