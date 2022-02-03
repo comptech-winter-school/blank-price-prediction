@@ -1,8 +1,10 @@
 {% extends 'TrueMetallSite/base.html' %}
+{% load static %}
 
 {% block title %}True Metall{% endblock %}
 
 {% block content %}
+    <script src="{% static 'TrueMetallSite/js/index.js' %}"></script>
     <div class="page-wrapper">
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
