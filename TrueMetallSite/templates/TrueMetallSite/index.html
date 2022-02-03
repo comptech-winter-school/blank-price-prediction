@@ -6,21 +6,22 @@
 {% block content %}
     <script src="{% static 'TrueMetallSite/js/index.js' %}"></script>
     <div class="page-wrapper">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
             <div class="my_container">
-                <div class="load_container">
-                    <label for="upload-button" class="label">
-                        <div class="load">
-                            <p id="upload-text">Загрузить файлы</p>
-                            <input id="upload-button" type="file" name="document" accept=".xsl,.xlsx,.csv"></input>
-                        </div>
-                    </label>
-                </div>
-                <div class="predict_container">
-                    <button id="predict-button" name="predict" type="submit" class="predict">Сделать прогноз</button>
-                </div>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="load_container">
+                        <label for="upload-button" class="label">
+                            <div class="load">
+                                <p id="upload-text">Загрузить файл</p>
+                                <input id="upload-button" type="file" name="document" accept=".xsl,.xlsx,.csv"></input>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="predict_container">
+                        <button id="predict-button" name="predict" type="submit" class="predict">Сделать прогноз</button>
+                    </div>
+                </form>
             </div>
-        </form>
+
     </div>
 {% endblock %}
