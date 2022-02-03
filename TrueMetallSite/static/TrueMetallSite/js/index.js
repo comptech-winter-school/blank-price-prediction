@@ -28,8 +28,8 @@ function uploadedFile() {
     function handleFile() {
           var file = this.files;
           var fileLength = file.length
-          var fileName = this.files[0].name
-          var fileType = this.files[0].type
+          var fileName = file[0].name
+          var fileType = file[0].type
 
           // validation of files count and type
           if (fileLength == 1 && validateFileType(fileType)) {
@@ -37,7 +37,7 @@ function uploadedFile() {
                 enablePredictButton()
               }
           else {
-              alert ("Ivalid file extension")
+              alert ("Недопустимое расширение файла")
           }
         }
     })
