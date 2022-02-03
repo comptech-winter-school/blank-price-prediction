@@ -49,5 +49,9 @@ body {
 }
 
 input[type='file'] {
-    display: none;
+    display:none;
+}
+
+#upload-text {
+    margin: auto;
 }

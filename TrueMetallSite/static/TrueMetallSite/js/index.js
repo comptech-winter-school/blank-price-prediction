@@ -15,27 +15,31 @@ function enablePredictButton() {
     predict_button.style.opacity = 1;
   }
 
+
 // check uploaded file
 function uploadedFile() {
-  disablePredictButton()
+    disablePredictButton()
 
-  document.addEventListener("DOMContentLoaded", function(event) {
+    document.addEventListener("DOMContentLoaded", function(event) {
 
-  var uploadButton = document.getElementById("upload-button");
-  uploadButton.addEventListener("change", handleFile, true);
+    var uploadButton = document.getElementById("upload-button");
+    uploadButton.addEventListener("change", handleFile, true);
 
-  // handle uploaded file
-  function handleFile() {
-      var file = this.files;
-      if (file.length == 1) {
-          enablePredictButton()
+      // handle uploaded file
+    function handleFile() {
+          var file = this.files;
+          var fileName = this.files[0].name
+
+          if (file.length == 1) {
+                document.getElementById("upload-text").innerHTML =  "Файл: " + fileName
+                enablePredictButton()
+              }
+          else {
+              disablePredictButton()
           }
-      else {
-          disablePredictButton()
-      }
-  }
-  })
-  }
+        }
+    })
+}
 
 function main() {
     uploadedFile()
