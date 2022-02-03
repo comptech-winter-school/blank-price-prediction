@@ -27,11 +27,12 @@ function uploadedFile() {
       // handle uploaded file
     function handleFile() {
           var file = this.files;
+          var fileLength = file.length
           var fileName = this.files[0].name
           var fileType = this.files[0].type
 
-          if (file.length == 1 && validateFileType(fileType)) {
-                console.log(fileType)
+          // validation of files count and type
+          if (fileLength == 1 && validateFileType(fileType)) {
                 document.getElementById("upload-text").innerHTML =  "Файл: " + fileName
                 enablePredictButton()
               }
