@@ -36,5 +36,10 @@
     font-size: 48px;
 }
 
+input[type='file'] {
+    display:none;
+}
 
-
+#upload-text {
+    margin: auto;
+}

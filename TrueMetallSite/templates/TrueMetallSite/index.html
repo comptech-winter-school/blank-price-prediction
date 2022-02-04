@@ -1,16 +1,26 @@
 {% extends 'TrueMetallSite/base.html' %}
+{% load static %}
 
 {% block title %}True Metall{% endblock %}
 
 {% block content %}
+    <script src="{% static 'TrueMetallSite/js/index.js' %}"></script>
     <div class="page-wrapper">
         <div class="my_container">
-            <div class="load_container">
-                <button class="load">Загрузить файл</button>
-            </div>
-            <div class="predict_container">
-                <button class="predict" onclick="window.location.href='/predicts/current'">Сделать прогноз</button>
-            </div>
+            <form method="post" enctype="multipart/form-data" action="/predicts/current">
+                {% csrf_token %}
+                <div class="load_container">
+                    <label for="upload-button" class="label">
+                        <div class="load">
+                            <p id="upload-text">Загрузить файл</p>
+                            <input id="upload-button" type="file" name="document" accept=".xls,.xlsx,.csv"></input>
+                        </div>
+                    </label>
+                </div>
+                <div class="predict_container">
+                    <input type="submit" class="predict" value="Сделать прогноз"/>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}
