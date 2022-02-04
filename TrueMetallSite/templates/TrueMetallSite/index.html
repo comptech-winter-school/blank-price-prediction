@@ -6,24 +6,25 @@
 {% block content %}
     <script src="{% static 'TrueMetallSite/js/index.js' %}"></script>
     <div class="page-wrapper">
-            <div class="my_container">
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="load_container">
-                        <label for="upload-button" class="label">
-                            <div class="load">
-                                <p id="upload-text">Загрузить файл</p>
-                                <input id="upload-button" type="file" name="document" accept=".xls,.xlsx,.csv"></input>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="predict_container">
-                        <button id="predict-button" name="predict" type="submit" class="predict">Сделать прогноз</button>
-                    </div>
-                    <div class="past-predict_container">
-                        <a href="#"><button id="past-predict-button" name="past-predictions" type="button" class="past-predict">Прошлые прогнозы</button></a>
-                    </div>
-                </form>
-            </div>
+        <div class="my_container">
+            <form method="post" enctype="multipart/form-data" action="/predicts/current">
+                {% csrf_token %}
+                <div class="load_container">
+                    <label for="upload-button" class="label">
+                        <div class="load">
+                            <p id="upload-text">Загрузить файл</p>
+                            <input id="upload-button" type="file" name="document" accept=".xls,.xlsx,.csv"></input>
+                        </div>
+                    </label>
+                </div>
+                <div class="predict_container">
+                    <button id="predict-button" name="predict" type="submit" class="predict">Сделать прогноз</button>
+                </div>
+                <div class="past-predict_container">
+                    <!--Убрать a tag, если не нужен-->
+                    <a href="#"><button id="past-predict-button" name="past-predictions" type="button" class="past-predict">Прошлые прогнозы</button></a>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}
