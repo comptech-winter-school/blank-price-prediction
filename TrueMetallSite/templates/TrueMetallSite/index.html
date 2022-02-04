@@ -21,8 +21,7 @@
                     <button id="predict-button" name="predict" type="submit" class="predict">Сделать прогноз</button>
                 </div>
                 <div class="past-predict_container">
-                    <!--Убрать a tag, если не нужен-->
-                    <a href="#"><button id="past-predict-button" name="past-predictions" type="button" class="past-predict">Прошлые прогнозы</button></a>
+                    <a href="{% url 'predicts' %}"><button id="past-predict-button" name="past-predictions" type="button" class="past-predict">История прогнозов</button></a>
                 </div>
             </form>
         </div>

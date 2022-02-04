@@ -1,13 +1,26 @@
 {% extends 'TrueMetallSite/base.html' %}
+{% load static %}
 
 {% block title %}Прогноз{% endblock %}
 
 {% block content %}
-    <div class="page-wrapper">
-        <div class="my_container">
-            {% for  el in predicts%}
-                <h3>{{ el.datetime }}</h3>
-            {% endfor %}
+<link rel="stylesheet" href="{% static 'TrueMetallSite/css/predicts.css' %}">
+<div class="page-wrapper">
+    <div class="new_my_container">
+        <div class="names-of-tables">
+            <div class="relative"><h2 id="date">Дата</h2></div>
+            <div class="relative"><h2 id="1-week">1 неделя</h2></div>
+            <div class="relative"><h2 id="2-week">2 недели</h2></div>
+            <div class="relative"><h2 id="4-week">4 недели</h2></div>
         </div>
+        {% for el in predicts %}
+             <div class="predictions">
+                 <div class="relative"><h4>{{ el.datetime }}</h4></div>
+                 <div class="relative"><h4>{{ el.one_week_predict }}</h4></div>
+                 <div class="relative"><h4 >{{ el.two_weeks_predict }}</h4></div>
+                 <div class="relative"><h4>{{ el.four_weeks_predict }}</h4></div>
+            </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
