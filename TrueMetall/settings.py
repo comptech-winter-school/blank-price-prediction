@@ -144,3 +144,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import django_heroku
 django_heroku.settings(locals())
+
+SECRET_KEY="e9u)9wlsitr61(7ozo4!u8f3%vkv&e6*yc+9zxk5n3#1zj1a"
