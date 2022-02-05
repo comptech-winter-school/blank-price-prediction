@@ -48,7 +48,29 @@ def current_predict(request):
     preds2.set_four_weeks_predict(predictions[3])
     preds2.save()
 
-    return render(request, 'TrueMetallSite/current_predict.html', context={"date": datetime.datetime.today(), "predictions": predictions, "prediction": prediction})
+    # Rounding the prediction
+    prediction = round(prediction, 2)
+
+    context = {"date": now,
+               "predictions": processPredictions(predictions),
+               "prediction": prediction}
+
+    return render(request, 'TrueMetallSite/current_predict.html', context)
+
+
+# Processing predictions and rounding it
+def processPredictions(predictions):
+
+    np_predictions = np.array(predictions)
+    processed_predictions = []
+
+    for np_prediction in np_predictions:
+        np_prediction = round(np_prediction, 2)
+        processed_predictions.append(np_prediction)
+
+    predictions = processed_predictions
+
+    return predictions
 
 
 def bollinger(request):

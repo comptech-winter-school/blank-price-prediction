@@ -4,26 +4,26 @@
 {% block title %}Прогноз{% endblock %}
 
 {% block content %}
-    <link rel="stylesheet" href="{% static 'TrueMetallSite/css/predicts.css' %}">
-    <div class="page-wrapper">
-        <div class="new_my_container">
-            <div class="names-of-tables">
-                <div class="relative"><h2 id="date">Дата</h2></div>
-                <div class="relative"><h2 id="1-week">1 неделя</h2></div>
-                <div class="relative"><h2 id="2-week">2 недели</h2></div>
-                <div class="relative"><h2 id="2-week">3 недели</h2></div>
-                <div class="relative"><h2 id="4-week">4 недели</h2></div>
-            </div>
-            <div class="predictions">
-                <div class="relative"><h4>{{ date }}</h4></div>
-                {% for el in predictions %}
-                    <div class="relative"><h4>{{ el }}</h4></div>
-                {% endfor %}
-            </div>
+<link rel="stylesheet" href="{% static 'TrueMetallSite/css/predicts.css' %}">
+<div class="page-wrapper">
+    <div class="new_my_container">
+        <div class="names-of-tables">
+            <div class="relative"><h2 id="date">Дата</h2></div>
+            <div class="relative"><h2 id="1-week">1 неделя</h2></div>
+            <div class="relative"><h2 id="2-week">2 недели</h2></div>
+            <div class="relative"><h2 id="3-week">3 недели</h2></div>
+            <div class="relative"><h2 id="4-week">4 недели</h2></div>
+        </div>
         <div class="predictions">
-            <div class="relative"><h4>{{ date }}</h4></div>
-            <div class="relative"><h4>{{ prediction }}</h4></div>
+            <div class="relative-pr"><h4>{{ date }}</h4></div>
+            {% for el in predictions %}
+                <div class="relative-pr"><h4>{{ el }}</h4></div>
+            {% endfor %}
         </div>
-        </div>
+    <div class="predictions">
+        <div class="relative-pr"><h4>{{ date }}</h4></div>
+        <div class="relative-pr"><h4>{{ prediction }}</h4></div>
     </div>
+    </div>
+</div>
 {% endblock %}

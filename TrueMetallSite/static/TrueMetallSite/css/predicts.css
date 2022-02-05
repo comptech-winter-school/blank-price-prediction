@@ -2,7 +2,6 @@
     width: 100%;
     height: 100%;
     max-width: 1800px;
-    max-height: 900px;
     text-align: center;
     margin: 0 auto;
     padding-top: 5%;
@@ -16,14 +15,22 @@
     display: flex;
     flex-direction: row;
     width: 1200px;
+    justify-content: space-between;
+}
+
+#date {
+    position: relative;
+    left: 110px;
+    margin-right: 250px;
 }
 
 .predictions {
     display: flex;
     align-items: center;
     width: 1200px;
+    justify-content: space-between;
 }
 
-.relative{
-    width: 25%;
+.relative-pr{
+    max-width: 300px;
 }

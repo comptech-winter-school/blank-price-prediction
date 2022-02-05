@@ -16,11 +16,11 @@
         </div>
         {% for el in predicts %}
              <div class="predictions">
-                 <div class="relative"><h4>{{ el.datetime }}</h4></div>
-                 <div class="relative"><h4>{{ el.one_week_predict }}</h4></div>
-                 <div class="relative"><h4 >{{ el.two_weeks_predict }}</h4></div>
-                 <div class="relative"><h4 >{{ el.three_weeks_predict }}</h4></div>
-                 <div class="relative"><h4>{{ el.four_weeks_predict }}</h4></div>
+                 <div class="relative-pr"><h4 id="date-predict">{{ el.datetime }}</h4></div>
+                 <div class="relative-pr"><h4>{{ el.one_week_predict }}</h4></div>
+                 <div class="relative-pr"><h4 >{{ el.two_weeks_predict }}</h4></div>
+                 <div class="relative-pr"><h4 >{{ el.three_weeks_predict }}</h4></div>
+                 <div class="relative-pr"><h4>{{ el.four_weeks_predict }}</h4></div>
             </div>
         {% endfor %}
     </div>
