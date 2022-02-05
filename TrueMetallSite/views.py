@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import TrueMetall.settings as s
 import io
 import base64
+from .predicts_handler import data_handler, model_handler
+
+
 # Create your views here.
 
 
@@ -22,12 +25,15 @@ def predicts(request):
 
 
 def current_predict(request):
+    file = request.FILES['document'].file
+    file.seek(0)
+    data_handler.handle_data(file)
+    predictions = model_handler.predict()
     return render(request, 'TrueMetallSite/current_predict.html')
 
 
 def bollinger(request):
-    templates = s.TEMPLATES[0]['DIRS'][0]
-    df = pd.read_excel(templates / 'data.xlsx', skiprows=[0, 1])
+    df = pd.read_excel(s.TEMPLATES[0]['DIRS'][0] / 'data.xlsx', skiprows=[0, 1])
 
     df = df[['Date', 'target']]
     df = df.dropna()
