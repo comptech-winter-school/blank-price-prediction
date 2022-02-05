@@ -10,3 +10,5 @@ final: training of the nn model
 model_inference: making predictions of a trained nn
 
 grid_lstm: training the lstm model on a grid of parameters in order to identify the optimal architecture
+
+lstm_predict: make a prediction of trained lstm
