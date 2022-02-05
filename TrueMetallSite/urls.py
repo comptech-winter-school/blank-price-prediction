@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('predicts/current', views.current_predict, name='current_predict'),
     path('predicts', views.predicts, name='predicts'),
+    path('bollinger', views.bollinger, name='bollinger')
 ]
