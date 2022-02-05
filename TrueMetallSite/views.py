@@ -4,6 +4,8 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import TrueMetall.settings as s
+import io
+import base64
 # Create your views here.
 
 
@@ -49,6 +51,9 @@ def bollinger(request):
     plt.plot(bollinger_down, label='Bollinger Down', c='r')
     plt.plot(sma, label='Simple Moving Average', c='y')
     plt.legend()
-    plt.savefig('TrueMetallSite/static/TrueMetallSite/images/foo.png')
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode()
     plt.clf()
-    return render(request, 'TrueMetallSite/bollinger.html')
+    return render(request, 'TrueMetallSite/bollinger.html', context={'imagen': plot_url})
