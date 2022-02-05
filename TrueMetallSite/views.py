@@ -50,4 +50,5 @@ def bollinger(request):
     plt.plot(sma, label='Simple Moving Average', c='y')
     plt.legend()
     plt.savefig('TrueMetallSite/static/TrueMetallSite/images/foo.png')
+    plt.clf()
     return render(request, 'TrueMetallSite/bollinger.html')
