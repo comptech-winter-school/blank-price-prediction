@@ -31,9 +31,24 @@ def current_predict(request):
     data_handler.handle_data(file)
     data_handler.create_features()
     predictions = model_handler.predict_lstm()
-    mins = predictions[0]
+    prediction = predictions[0]
     predictions = model_handler.predict_another().tolist()[0]
-    return render(request, 'TrueMetallSite/current_predict.html', context={"date": datetime.datetime.today(), "predictions": predictions})
+
+    now = datetime.datetime.today()
+    preds1 = Predicts()
+    preds2 = Predicts()
+    preds1.set_datetime(now)
+    preds1.set_one_week_predict(prediction)
+    preds1.save()
+
+    preds2.set_datetime(now)
+    preds2.set_one_week_predict(predictions[0])
+    preds2.set_two_weeks_predict(predictions[1])
+    preds2.set_three_weeks_predict(predictions[2])
+    preds2.set_four_weeks_predict(predictions[3])
+    preds2.save()
+
+    return render(request, 'TrueMetallSite/current_predict.html', context={"date": datetime.datetime.today(), "predictions": predictions, "prediction": prediction})
 
 
 def bollinger(request):
