@@ -28,7 +28,10 @@ def current_predict(request):
     file = request.FILES['document'].file
     file.seek(0)
     data_handler.handle_data(file)
-    predictions = model_handler.predict()
+    data_handler.create_features()
+    predictions = model_handler.predict_lstm()
+    mins = predictions[0]
+    predictions = model_handler.predict_another()
     return render(request, 'TrueMetallSite/current_predict.html')
 
 

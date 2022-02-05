@@ -39,7 +39,7 @@ def get_predict(scaler, model, df_train, df_test, shift):
     return predictions
 
 
-def predict():
+def predict_lstm():
     templates_path = TEMPLATES_LIST[0]['DIRS'][0]
     file_name = 'data_for_lstm.csv'
 
@@ -54,3 +54,24 @@ def predict():
     df_train = df.iloc[len_ - length_history - 1:len_ - 1, :].copy()
     df_test = df.iloc[len_ - 1:len_, :].copy()
     return get_predict(scaler=scaler, model=model, df_train=df_train.copy(), df_test=df_test.copy(), shift=length_history)
+
+
+
+
+
+def predict_another():
+    templates_path = TEMPLATES_LIST[0]['DIRS'][0]
+    df = pd.read_csv(templates_path / 'selected_shifted_data.csv')
+
+    templates_path = TEMPLATES_LIST[0]['DIRS'][0]
+    model_file = 'my_best_model.hdf5'
+    scaler_file = 'scaler.save'
+
+    scaler = joblib.load(templates_path / scaler_file)
+    model = load_model(templates_path / model_file)
+
+    cols = df.columns
+    X_test = scaler.transform(df)
+    X_test = pd.DataFrame(X_test, columns=cols)
+
+    return model.predict(X_test, steps=1)

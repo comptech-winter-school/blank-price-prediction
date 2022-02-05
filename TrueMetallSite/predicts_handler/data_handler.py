@@ -101,14 +101,73 @@ def append_new_df(new_df):
     return tables, years
 
 
-def create_lstm_data():
-    templates_path = TEMPLATES_LIST[0]['DIRS'][0]
-    main_table = pd.read_csv(templates_path / 'main_table.csv')
+def create_lstm_data(main_table, templates_path):
     length = main_table.shape[0]
     for i in range(length-3, length):
         main_table = main_table.drop([i], axis=0)
     main_table = main_table.dropna(axis=1)
-    main_table.to_csv(templates_path / 'data_for_lstm.csv', index=False)
+    (main_table.iloc[::-1]).to_csv(templates_path / 'data_for_lstm.csv', index=False)
+
+
+def create_shifted_data(main_table, templates_path):
+    main_table['timepoint'] = pd.to_datetime(main_table['timepoint'])
+    main_table = main_table.iloc[:9, :]
+    table = main_table
+    columns = table.columns[1:]
+    list_ = [1, 2, 4, 8]
+    for shift in list_:
+        for col in columns:
+            table['{}-shifted '.format(shift) + col] = table.apply(lambda row: table[
+                (table['timepoint'] >= (row['timepoint'] - pd.Timedelta('{} days'.format(7 * shift)))) &
+                (table['timepoint'] <= row['timepoint'])
+                ][col].mean(), axis=1)
+
+    sel_features = ['target',
+                    'mean_w_product1, CFR market1',
+                    'mean_w_product1 country1, EXW',
+                    'min_w_product1 country1, EXW',
+                    'max_w_product1, CFR market1',
+                    '1-shifted max_w_product1 country1, EXW',
+                    'max_w_product1 country1, EXW',
+                    '8-shifted Price.1',
+                    '2-shifted Price.2',
+                    'mean_w_Fe 62%, CFR country1',
+                    'Scrap, CIF SEA',
+                    '1-shifted USD/CUR1 (Price)',
+                    'Price.2',
+                    'country3 Industrial Production',
+                    '1-shifted Price.2',
+                    '1-shifted sum_w_Fe 62%, CFR country1',
+                    '2-shifted Purchasing Managers Index - Manufacturing',
+                    '1-shifted Scrap, CIF SEA',
+                    '2-shifted USD/CUR1 (Price)',
+                    '4-shifted USD/CUR5 (Price)',
+                    '1-shifted Purchasing Managers Index - Manufacturing',
+                    '4-shifted USD/CUR2 (Price)',
+                    '2-shifted country3 Industrial Production',
+                    'USD/CUR1 (Price)',
+                    '8-shifted Purchase Price Index',
+                    'PMI',
+                    'min_w_Fe 62%, CFR country1',
+                    'HCC, FOB Aust.1',
+                    '8-shifted housing starts',
+                    '4-shifted Actual',
+                    '4-shifted housing starts, country1',
+                    'Total Exports',
+                    'mean_w_HCC, FOB Aust',
+                    'country4 Business Confidence',
+                    '8-shifted Price',
+                    '2-shifted country4 Business Confidence']
+
+    table[sel_features].head(1).to_csv(
+        templates_path / 'selected_shifted_data.csv', index=False)
+
+
+def create_features():
+    templates_path = TEMPLATES_LIST[0]['DIRS'][0]
+    main_table = pd.read_csv(templates_path / 'main_table.csv')
+    create_lstm_data(main_table, templates_path)
+    create_shifted_data(main_table, templates_path)
 
 
 def handle_data(file):
@@ -159,4 +218,3 @@ def handle_data(file):
         cur_df.to_csv(table_csv)
 
     join_interpolate_week(tables)
-    create_lstm_data()
