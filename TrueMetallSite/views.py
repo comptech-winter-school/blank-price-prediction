@@ -7,6 +7,7 @@ import TrueMetall.settings as s
 import io
 import base64
 from .predicts_handler import data_handler, model_handler
+import datetime
 
 
 # Create your views here.
@@ -31,8 +32,8 @@ def current_predict(request):
     data_handler.create_features()
     predictions = model_handler.predict_lstm()
     mins = predictions[0]
-    predictions = model_handler.predict_another()
-    return render(request, 'TrueMetallSite/current_predict.html')
+    predictions = model_handler.predict_another().tolist()[0]
+    return render(request, 'TrueMetallSite/current_predict.html', context={"date": datetime.datetime.today(), "predictions": predictions})
 
 
 def bollinger(request):
