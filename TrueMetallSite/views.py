@@ -43,14 +43,14 @@ def bollinger(request):
     bollinger_down = sma - std * 2
 
     # Plot the data
-    plt.figure(figsize=(14, 6))
+    plt.figure(figsize=(13, 6))
     plt.title('Металлические заготовки', x=0.5, y=1.03, fontsize=18)
     plt.xlabel('День', labelpad=7, fontsize=14)
     plt.ylabel('Цена закрытия', labelpad=15, fontsize=14)
-    plt.plot(closing_prices, label='Цена закрытия', c='g')
-    plt.plot(bollinger_up, label='Верхняя Боллинджера', c='b', alpha=0.5)
-    plt.plot(bollinger_down, label='Нижняя Боллинджера', c='b', alpha=0.5)
-    plt.plot(sma, label='Средняя скользящая', c='#A66D00', alpha=0.5)
+    plt.plot(closing_prices, label='Цена закрытия', c='#000', linewidth=1.3, zorder=10)
+    plt.plot(bollinger_up, label='Верхняя Боллинджера', c='g', linewidth=1)
+    plt.plot(bollinger_down, label='Нижняя Боллинджера', c='r', linewidth=1)
+    plt.plot(sma, label='Средняя скользящая', c='#ffc800', linewidth=1)
     plt.legend()
     img = io.BytesIO()
     plt.savefig(img, format='png')
