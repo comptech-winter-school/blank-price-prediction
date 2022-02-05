@@ -56,14 +56,27 @@ body {
 .past-predict {
     width: 783px;
     height: 77px;
-    background-color: #E88B00;
+    background-color: #000000;
     color: white;
-    margin-top: 4%;
+    margin-top: 2%;
     border: none;
     border-radius: 60px;
     font-family: 'Roboto', sans-serif;
     font-size: 48px;
 }
+
+.bollinger {
+    width: 783px;
+    height: 77px;
+    background-color: #E88B00;
+    color: white;
+    margin-top: 2%;
+    border: none;
+    border-radius: 60px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 48px;
+}
+
 input[type='file'] {
     display: none;
 }

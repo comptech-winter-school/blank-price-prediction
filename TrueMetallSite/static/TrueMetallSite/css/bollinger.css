@@ -1,0 +1,23 @@
+.new_my_container {
+    width: 100%;
+    height: 100%;
+    max-width: 1800px;
+    max-height: 800px;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.img-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    top: -25px;
+}
+
+.img-container img {
+    width: 90%;
+    height: 90%;
+}

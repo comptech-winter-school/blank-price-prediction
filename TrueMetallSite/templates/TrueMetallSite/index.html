@@ -24,7 +24,7 @@
                     <a href="{% url 'predicts' %}"><button id="past-predict-button" name="past-predictions" type="button" class="past-predict">История прогнозов</button></a>
                 </div>
                 <div class="bollinger_container">
-                    <a href="bollinger"><button id="past-predict-button" name="past-predictions" type="button" class="past-predict">Линия Боллинджера</button></a>
+                    <a href="{% url 'bollinger' %}"><button id="bollinger-button" name="bollinger-line" type="button" class="bollinger">Линия Боллинджера</button></a>
                 </div>
             </form>
         </div>
