@@ -6,6 +6,10 @@ import matplotlib.pyplot as plt
 import TrueMetall.settings as s
 import io
 import base64
+from .predicts_handler import data_handler, model_handler
+import datetime
+
+
 # Create your views here.
 
 
@@ -22,12 +26,33 @@ def predicts(request):
 
 
 def current_predict(request):
-    return render(request, 'TrueMetallSite/current_predict.html')
+    file = request.FILES['document'].file
+    file.seek(0)
+    data_handler.handle_data(file)
+    data_handler.create_features()
+    predictions = model_handler.predict_lstm()
+    prediction = predictions[0]
+    predictions = model_handler.predict_another().tolist()[0]
+
+    now = datetime.datetime.today()
+    preds1 = Predicts()
+    preds2 = Predicts()
+    preds1.set_datetime(now)
+    preds1.set_one_week_predict(prediction)
+    preds1.save()
+
+    preds2.set_datetime(now)
+    preds2.set_one_week_predict(predictions[0])
+    preds2.set_two_weeks_predict(predictions[1])
+    preds2.set_three_weeks_predict(predictions[2])
+    preds2.set_four_weeks_predict(predictions[3])
+    preds2.save()
+
+    return render(request, 'TrueMetallSite/current_predict.html', context={"date": datetime.datetime.today(), "predictions": predictions, "prediction": prediction})
 
 
 def bollinger(request):
-    templates = s.TEMPLATES[0]['DIRS'][0]
-    df = pd.read_excel(templates / 'data.xlsx', skiprows=[0, 1])
+    df = pd.read_excel(s.TEMPLATES[0]['DIRS'][0] / 'data.xlsx', skiprows=[0, 1])
 
     df = df[['Date', 'target']]
     df = df.dropna()
