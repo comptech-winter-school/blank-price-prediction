@@ -32,7 +32,7 @@ def current_predict(request):
     data_handler.create_features()
     predictions = model_handler.predict_lstm()
     prediction = process_predictions(predictions)[0]
-    predictions = model_handler.predict_another().tolist()[0]
+    predictions = process_predictions(model_handler.predict_another().tolist()[0])
 
     now = datetime.datetime.today()
     preds1 = Predicts()
@@ -51,7 +51,7 @@ def current_predict(request):
     return render(request,
                   'TrueMetallSite/current_predict.html',
                   context={"date": datetime.datetime.today(),
-                           "predictions": process_predictions(predictions),
+                           "predictions": predictions,
                            "prediction": prediction})
 
 
