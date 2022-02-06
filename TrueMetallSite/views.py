@@ -31,7 +31,7 @@ def current_predict(request):
     data_handler.handle_data(file)
     data_handler.create_features()
     predictions = model_handler.predict_lstm()
-    prediction = predictions[0]
+    prediction = process_predictions(predictions)[0]
     predictions = model_handler.predict_another().tolist()[0]
 
     now = datetime.datetime.today()
@@ -48,7 +48,24 @@ def current_predict(request):
     preds2.set_four_weeks_predict(predictions[3])
     preds2.save()
 
-    return render(request, 'TrueMetallSite/current_predict.html', context={"date": datetime.datetime.today(), "predictions": predictions, "prediction": prediction})
+    return render(request,
+                  'TrueMetallSite/current_predict.html',
+                  context={"date": datetime.datetime.today(),
+                           "predictions": process_predictions(predictions),
+                           "prediction": prediction})
+
+
+def process_predictions(predictions):
+    np_predictions = np.array(predictions)
+    processed_predictions = []
+
+    for np_prediction in np_predictions:
+        np_prediction = round(np_prediction, 2)
+        processed_predictions.append(np_prediction)
+
+    predictions = processed_predictions
+
+    return predictions
 
 
 def bollinger(request):
