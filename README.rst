@@ -44,4 +44,5 @@ Repository structure
 
 - lstm_predict: make a prediction of trained lstm
 
+- docs/vision: detailed description of the project in Russian
 
